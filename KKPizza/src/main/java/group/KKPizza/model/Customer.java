@@ -1,12 +1,12 @@
 package group.KKPizza.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int phoneNumber;
+    private int PHONENUMBER;
     private String name;
     private String address;
     private String city;
@@ -18,11 +18,11 @@ public class Customer {
     }
 
     public int getPhoneNumber() {
-        return phoneNumber;
+        return PHONENUMBER;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(int PHONE_NUMBER) {
+        this.PHONENUMBER = PHONE_NUMBER;
     }
 
     public String getName() {

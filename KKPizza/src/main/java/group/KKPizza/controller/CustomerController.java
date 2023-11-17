@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/new-order")
+@RequestMapping("/customer")
 @CrossOrigin
 public class CustomerController {
     @Autowired
@@ -25,7 +25,7 @@ public class CustomerController {
         return ("Saved new customer");
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/getAll")
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }

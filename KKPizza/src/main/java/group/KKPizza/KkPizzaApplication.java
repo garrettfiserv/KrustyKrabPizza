@@ -18,24 +18,24 @@ public class KkPizzaApplication {
 				+ "&role=ACCOUNTADMIN&CLIENT_RESULT_COLUMN_CASE_INSENSITIVE=true&CLIENT_TIMESTAMP_TYPE_MAPPING=TIMESTAMP_NTZ&JDBC_QUERY_RESULT_FORMAT=JSON";
 		String selectSQL = "SELECT * FROM KRUSTY_KRAB_PIZZA.PIZZERIA.CUSTOMER";
 
-		try {
-			Connection connection = DriverManager.getConnection(jdbcUrl);
-			System.out.println("connected");
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(selectSQL);
-
-			while (rs.next()) {
-				System.out.print(rs.getString("PHONENUMBER") + " ");
-				System.out.print(rs.getString("NAME") + " ");
-				System.out.print(rs.getString("ADDRESS") + " ");
-				System.out.print(rs.getString("CITY") + " ");
-				System.out.print(rs.getString("STATE") + " ");
-				System.out.print(rs.getString("ZIP") + " ");
-				System.out.println();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// try{
+		// Connection connection = DriverManager.getConnection(jdbcUrl);
+		// System.out.println("connected");
+		// Statement stmt = connection.createStatement();
+		// ResultSet rs = stmt.executeQuery(selectSQL);
+		//
+		// while(rs.next()){
+		// System.out.print(rs.getString("PHONENUMBER") + " " );
+		// System.out.print(rs.getString("NAME") + " ");
+		// System.out.print(rs.getString("ADDRESS") + " ");
+		// System.out.print(rs.getString("CITY") + " ");
+		// System.out.print(rs.getString("STATE") + " ");
+		// System.out.print(rs.getString("ZIP")+ " ");
+		// System.out.println();
+		// }
+		// }catch(SQLException e){
+		// e.printStackTrace();
+		// }
 	}
 
 }
