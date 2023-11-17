@@ -1,23 +1,22 @@
 package group.KKPizza.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 public class Customer {
     @Id
-    private int PHONENUMBER;
+    private String PHONENUMBER;
     private String name;
     private String address;
     private String city;
     private String state;
     private String zip;
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return PHONENUMBER;
     }
 
-    public void setPhoneNumber(int PHONE_NUMBER) {
+    public void setPhoneNumber(String PHONE_NUMBER) {
         this.PHONENUMBER = PHONE_NUMBER;
     }
 

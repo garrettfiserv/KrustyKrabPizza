@@ -5,29 +5,22 @@ import jakarta.persistence.*;
 @Entity
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeId;
-    private String phoneNumber;
+
+    private int employeeID;
+    private String PHONENUMBER;
     private String name;
     private String title;
     private String password;
-    private boolean isAdmin;
+
+    private boolean isadmin;
+
     public Employee(){}
-
-    public int getEmployeeID() {
-        return employeeId;
+    public String getPHONENUMBER() {
+        return PHONENUMBER;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeId = employeeID;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPHONENUMBER(String PHONENUMBER) {
+        this.PHONENUMBER = PHONENUMBER;
     }
 
     public String getName() {
@@ -54,11 +47,20 @@ public class Employee {
         this.password = password;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public int getEmployeeID() {
+        return employeeID;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public boolean isIsadmin() {
+        return isadmin;
+    }
+
+    public void setIsadmin(boolean isadmin) {
+        this.isadmin = isadmin;
     }
 }
+
