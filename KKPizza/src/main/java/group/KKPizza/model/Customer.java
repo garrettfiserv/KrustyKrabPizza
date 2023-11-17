@@ -13,6 +13,10 @@ public class Customer {
     private String state;
     private String zip;
 
+    public Customer() {
+
+    }
+
     public int getPhoneNumber() {
         return phoneNumber;
     }
@@ -60,12 +64,4 @@ public class Customer {
     public void setZip(String zip) {
         this.zip = zip;
     }
-
-    public Customer(){
-
-    }
-
-
-
-
 }

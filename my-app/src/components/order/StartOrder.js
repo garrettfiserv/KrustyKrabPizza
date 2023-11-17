@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import CustomerInfo from "./CustomerInfo";
 
 export default function StartOrder() {
   const [phone, setPhone] = useState("");
@@ -11,7 +12,7 @@ export default function StartOrder() {
 
     console.log("Start Order Successful");
     // re-route to Menu page
-    return navigate("/new-order/customer-info");
+    return navigate("/new-order/customer");
   };
 
   return (
@@ -29,6 +30,7 @@ export default function StartOrder() {
               onChange={(e) => setPhone(e.target.value)}
               className="form-input"
             />
+            {/* <CustomerInfo phone={phone} /> */}
 
             <button>Submit</button>
           </form>

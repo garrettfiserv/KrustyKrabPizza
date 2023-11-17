@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function CustomerInfo() {
   const [name, setName] = useState("");
@@ -8,7 +9,24 @@ export default function CustomerInfo() {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
   const [custState, setCustState] = useState("");
+  const [error, setError] = useState(null);
+  const [customers, setCustomers] = useState([]);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/new-order/customer")
+      .then((response) => response.json())
+      .then((result) => {
+        setCustomers(result);
+      })
+      .catch((error) => {
+        console.error("Axios Error: CustomerInfo Componenet: ", error);
+        setError(error);
+      });
+  }, []);
+
+  console.log(customers);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,7 +39,6 @@ export default function CustomerInfo() {
 
   return (
     <>
-      <h1>Customer Info Page</h1>
       <main>
         <Link to="/new-order/start">Return</Link>
         <div>
@@ -29,7 +46,7 @@ export default function CustomerInfo() {
             <input
               required
               name="name"
-              placeholder="Name"
+              placeholder={name}
               type="text"
               onChange={(e) => setName(e.target.value)}
               className="form-input"
@@ -37,7 +54,7 @@ export default function CustomerInfo() {
             <input
               required
               name="phone"
-              placeholder="Phone"
+              placeholder={phone}
               type="text"
               onChange={(e) => setPhone(e.target.value)}
               className="form-input"
@@ -76,6 +93,14 @@ export default function CustomerInfo() {
             />
             <button>Submit</button>
           </form>
+          <div>
+            {customers.map((customer) => (
+              <div key={customer.id}>
+                <div>ID: {customer.id}</div>
+                <div>Name: {customer.name}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </>

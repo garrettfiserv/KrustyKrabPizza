@@ -5,7 +5,7 @@ export default function Menu() {
     <>
       <h1>Menu Page</h1>
       <main>
-        <Link to="/new-order/customer-info">Return</Link>
+        <Link to="/new-order/customer">Return</Link>
         <div>Menu stuff</div>
       </main>
     </>

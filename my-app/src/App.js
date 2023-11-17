@@ -16,10 +16,7 @@ function App() {
         {/* <Route path="/" element={<Layout />}></Route> */}
         <Route path="/" element={<Home />}></Route>
         <Route path="/new-order/start" element={<StartOrder />}></Route>
-        <Route
-          path="/new-order/customer-info"
-          element={<CustomerInfo />}
-        ></Route>
+        <Route path="/new-order/customer" element={<CustomerInfo />}></Route>
         <Route path="/new-order/menu" element={<Menu />}></Route>
         <Route path="/new-order/cart" element={<Cart />}></Route>
 
