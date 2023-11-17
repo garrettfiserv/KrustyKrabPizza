@@ -18,24 +18,24 @@ public class KkPizzaApplication {
 
 
 
-		try{
-			Connection connection = DriverManager.getConnection(jdbcUrl);
-			System.out.println("connected");
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(selectSQL);
-
-            while(rs.next()){
-				System.out.print(rs.getString("PHONENUMBER") + " " );
-				System.out.print(rs.getString("NAME") + " ");
-				System.out.print(rs.getString("ADDRESS")  + " ");
-				System.out.print(rs.getString("CITY") +  " ");
-				System.out.print(rs.getString("STATE") + " ");
-				System.out.print(rs.getString("ZIP")+ " ");
-				System.out.println();
-            }
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
+//		try{
+//			Connection connection = DriverManager.getConnection(jdbcUrl);
+//			System.out.println("connected");
+//			Statement stmt = connection.createStatement();
+//			ResultSet rs = stmt.executeQuery(selectSQL);
+//
+//            while(rs.next()){
+//				System.out.print(rs.getString("PHONENUMBER") + " " );
+//				System.out.print(rs.getString("NAME") + " ");
+//				System.out.print(rs.getString("ADDRESS")  + " ");
+//				System.out.print(rs.getString("CITY") +  " ");
+//				System.out.print(rs.getString("STATE") + " ");
+//				System.out.print(rs.getString("ZIP")+ " ");
+//				System.out.println();
+//            }
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}
 	}
 
 }
