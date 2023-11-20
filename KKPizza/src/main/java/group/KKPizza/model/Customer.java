@@ -2,22 +2,28 @@ package group.KKPizza.model;
 
 import jakarta.persistence.*;
 
+
 @Entity
 public class Customer {
+
     @Id
-    private String PHONENUMBER;
+    @Column(name = "phonenumber")
+    private String phonenumber;
     private String name;
     private String address;
     private String city;
     private String state;
     private String zip;
 
+    public Customer(){
+
+    }
     public String getPhoneNumber() {
-        return PHONENUMBER;
+        return phonenumber;
     }
 
     public void setPhoneNumber(String PHONE_NUMBER) {
-        this.PHONENUMBER = PHONE_NUMBER;
+        this.phonenumber = PHONE_NUMBER;
     }
 
     public String getName() {
@@ -58,10 +64,6 @@ public class Customer {
 
     public void setZip(String zip) {
         this.zip = zip;
-    }
-
-    public Customer(){
-
     }
 
 
