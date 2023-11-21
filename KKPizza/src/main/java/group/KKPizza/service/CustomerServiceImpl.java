@@ -1,5 +1,6 @@
 package group.KKPizza.service;
 
+import java.util.List;
 import group.KKPizza.model.Customer;
 import group.KKPizza.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+    public List<Customer> getAllCustomer() {
+        return (List<Customer>) customerRepository.findAll();
     }
 }

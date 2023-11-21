@@ -9,7 +9,6 @@ export default function Home() {
       </h1>
       <main>
         <Link to="/new-order/start">Start New Order</Link>
-        <Link to="/admin/login">Admin Login</Link>
       </main>
     </>
   );

@@ -1,27 +1,24 @@
 package group.KKPizza.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 public class Customer {
     @Id
-    private int PHONENUMBER;
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    // private long CUSTOMERID;
+    private String PHONENUMBER;
     private String name;
     private String address;
     private String city;
     private String state;
     private String zip;
 
-    public Customer() {
-
-    }
-
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return PHONENUMBER;
     }
 
-    public void setPhoneNumber(int PHONE_NUMBER) {
+    public void setPhoneNumber(String PHONE_NUMBER) {
         this.PHONENUMBER = PHONE_NUMBER;
     }
 
@@ -64,4 +61,12 @@ public class Customer {
     public void setZip(String zip) {
         this.zip = zip;
     }
+
+    // public int getCustomerID() {
+    // return CUSTOMERID;
+    // }
+
+    // public void setCustomerID(int customerID) {
+    // this.CUSTOMERID = customerID;
+    // }
 }

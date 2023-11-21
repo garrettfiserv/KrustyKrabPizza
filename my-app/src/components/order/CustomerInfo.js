@@ -9,28 +9,35 @@ export default function CustomerInfo() {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
   const [custState, setCustState] = useState("");
-  const [error, setError] = useState(null);
   const [customers, setCustomers] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/new-order/customer")
-      .then((response) => response.json())
-      .then((result) => {
-        setCustomers(result);
-      })
-      .catch((error) => {
-        console.error("Axios Error: CustomerInfo Componenet: ", error);
-        setError(error);
-      });
+    axios.get("http://localhost:8080/customer/getAll").then((response) => {
+      setCustomers(response.data);
+    });
   }, []);
 
   console.log(customers);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // include error handling
+
+    axios
+      .post("http://localhost:8080/customer/add", {
+        PHONENUMBER: phone,
+        name: name,
+        address: address,
+        city: city,
+        state: custState,
+        zip: zip,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error("Axios Post Error In CustomerInfo Componenet: ", error);
+      });
 
     console.log("Customer Information Successful");
     // re-route to Menu page
@@ -46,7 +53,7 @@ export default function CustomerInfo() {
             <input
               required
               name="name"
-              placeholder={name}
+              placeholder="Full Name"
               type="text"
               onChange={(e) => setName(e.target.value)}
               className="form-input"
@@ -54,7 +61,7 @@ export default function CustomerInfo() {
             <input
               required
               name="phone"
-              placeholder={phone}
+              placeholder="Phone Number"
               type="text"
               onChange={(e) => setPhone(e.target.value)}
               className="form-input"
@@ -93,14 +100,6 @@ export default function CustomerInfo() {
             />
             <button>Submit</button>
           </form>
-          <div>
-            {customers.map((customer) => (
-              <div key={customer.id}>
-                <div>ID: {customer.id}</div>
-                <div>Name: {customer.name}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </main>
     </>

@@ -1,7 +1,4 @@
 package group.KKPizza.service;
-
-import group.KKPizza.model.Employee;
-
 import java.util.List;
 import group.KKPizza.model.Employee;
 import group.KKPizza.repository.EmployeeRepository;
@@ -19,6 +16,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAllEmployee() {
-        return employeeRepository.findAll();
+        return (List<Employee>) employeeRepository.findAll();
     }
 }
