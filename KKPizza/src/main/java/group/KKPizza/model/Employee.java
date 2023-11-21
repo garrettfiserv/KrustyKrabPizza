@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 @Entity
 public class Employee {
     @Id
-
+    @Column(name = "employeeid")
     private int employeeID;
-    private String PHONENUMBER;
+    @Column(name = "phonenumber")
+    private String phonenumber;
     private String name;
     private String title;
     private String password;
@@ -15,12 +16,12 @@ public class Employee {
     private boolean isadmin;
 
     public Employee(){}
-    public String getPHONENUMBER() {
-        return PHONENUMBER;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPHONENUMBER(String PHONENUMBER) {
-        this.PHONENUMBER = PHONENUMBER;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getName() {
