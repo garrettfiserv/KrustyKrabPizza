@@ -1,6 +1,7 @@
 package group.KKPizza.controller;
 
 
+import group.KKPizza.DatabaseManager;
 import group.KKPizza.Environment;
 import group.KKPizza.model.Employee;
 import group.KKPizza.repository.EmployeeRepository;
@@ -41,14 +42,10 @@ public class EmployeeController {
     public String add(@RequestBody Employee employee){
         employeeService.saveEmployee(employee);
         // This step below is necessary to update the EmployeeID in Employee Table
-        Environment env = new Environment();
-        String pass = env.getPass();
-        String jdbcUrl = "jdbc:snowflake://KG89117.ca-central-1.aws.snowflakecomputing.com/?warehouse=COMPUTE_WH&db=KRUSTY_KRAB_PIZZA&schema=PIZZERIA&user=kavishdesai&password="+ pass+ "&role=ACCOUNTADMIN&CLIENT_RESULT_COLUMN_CASE_INSENSITIVE=true&CLIENT_TIMESTAMP_TYPE_MAPPING=TIMESTAMP_NTZ&JDBC_QUERY_RESULT_FORMAT=JSON";
-        //String jdbcUrl = "jdbc:snowflake://VCB70660.us-east-1.snowflakecomputing.com/?warehouse=COMPUTE_WH&db=KRUSTY_KRAB_PIZZA&schema=PIZZERIA&user=garrettboscoe&password=" + pass  + "&role=ACCOUNTADMIN&CLIENT_RESULT_COLUMN_CASE_INSENSITIVE=true&CLIENT_TIMESTAMP_TYPE_MAPPING=TIMESTAMP_NTZ&JDBC_QUERY_RESULT_FORMAT=JSON";
         String selectSQL = "update EMPLOYEE set employeeID = KRUSTY_KRAB_PIZZA.PIZZERIA.SEQ_EMPLOYEE_ID.nextval where employeeID =0";
 
         try{
-            Connection connection = DriverManager.getConnection(jdbcUrl);
+            Connection connection = DatabaseManager.getConnection();
             System.out.println("updated");
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(selectSQL);
