@@ -7,4 +7,5 @@ import java.util.List;
 public interface CustomerOrderService {
     public CustomerOrder saveCustomerOrder(CustomerOrder customerOrder);
     public List<CustomerOrder> getAllCustomerOrder();
+    CustomerOrder getCustomerOrderById(int orderID);
 }
