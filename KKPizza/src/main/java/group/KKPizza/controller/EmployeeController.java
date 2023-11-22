@@ -1,7 +1,6 @@
 package group.KKPizza.controller;
 
 import group.KKPizza.DatabaseManager;
-import group.KKPizza.Environment;
 import group.KKPizza.model.Employee;
 import group.KKPizza.repository.EmployeeRepository;
 import group.KKPizza.service.EmployeeService;
@@ -33,6 +32,22 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/deactivateEmployee/{id}")
+    public ResponseEntity<Employee> deactivateEmployee(@PathVariable("id") int employeeId) {
+        Optional<Employee> employee = employeeRepository.findById(employeeId);
+
+        if (employee.isPresent()) {
+            Employee modifiedemployee = employee.get();
+            modifiedemployee.setIsactive(false); // Set isActive to false
+
+            // Save the updated employee entity
+            employeeRepository.save(modifiedemployee);
+
+            return ResponseEntity.ok(modifiedemployee); // Return a response indicating successful deactivation
+        } else {
+            return ResponseEntity.notFound().build(); // Return 404 if the employee with the provided ID is not found
+        }
+    }
 
     @GetMapping("/getAll")
     public List<Employee> list() {
@@ -55,4 +70,31 @@ public class EmployeeController {
         }
         return ("Saved new employee");
     }
+
+    @PutMapping("/updateEmployee/{id}")
+    public ResponseEntity<Employee> updateEmployeeDetails(@PathVariable("id") int employeeId,
+                                                          @RequestBody Employee updatedEmployee) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+
+        if (optionalEmployee.isPresent()) {
+            Employee existingEmployee = optionalEmployee.get();
+
+            // Update employee details if provided in the request body
+            existingEmployee.setName(updatedEmployee.getName());
+            existingEmployee.setPhonenumber(updatedEmployee.getPhonenumber());
+            existingEmployee.setPassword(updatedEmployee.getPassword());
+            existingEmployee.setIsactive(updatedEmployee.isIsactive());
+            existingEmployee.setIsadmin(updatedEmployee.isIsadmin());
+            existingEmployee.setTitle(updatedEmployee.getTitle());
+            // Update other fields as needed
+
+            // Save the updated employee entity
+            Employee savedEmployee = employeeRepository.save(existingEmployee);
+
+            return ResponseEntity.ok(savedEmployee); // Return a response indicating successful update
+        } else {
+            return ResponseEntity.notFound().build(); // Return 404 if the employee with the provided ID is not found
+        }
+    }
+
 }

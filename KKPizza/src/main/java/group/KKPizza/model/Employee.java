@@ -1,7 +1,6 @@
 package group.KKPizza.model;
 
 import jakarta.persistence.*;
-
 @Entity
 public class Employee {
     @Id
@@ -14,6 +13,17 @@ public class Employee {
     private String password;
 
     private boolean isadmin;
+    private boolean isactive;
+
+    public boolean isIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(boolean isactive) {
+        this.isactive = isactive;
+    }
+
+
 
     public Employee(){}
     public String getPhonenumber() {
