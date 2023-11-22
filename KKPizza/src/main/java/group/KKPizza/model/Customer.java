@@ -2,7 +2,6 @@ package group.KKPizza.model;
 
 import jakarta.persistence.*;
 
-
 @Entity
 public class Customer {
 
@@ -15,9 +14,10 @@ public class Customer {
     private String state;
     private String zip;
 
-    public Customer(){
+    public Customer() {
 
     }
+
     public String getPhoneNumber() {
         return phonenumber;
     }
@@ -66,7 +66,7 @@ public class Customer {
         this.zip = zip;
     }
 
-
-
-
+    // public void setCustomerID(int customerID) {
+    // this.CUSTOMERID = customerID;
+    // }
 }

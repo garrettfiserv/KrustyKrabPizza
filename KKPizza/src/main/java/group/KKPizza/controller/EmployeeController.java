@@ -1,6 +1,5 @@
 package group.KKPizza.controller;
 
-
 import group.KKPizza.DatabaseManager;
 import group.KKPizza.Environment;
 import group.KKPizza.model.Employee;
@@ -17,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
+@CrossOrigin
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -33,25 +33,26 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/getAll")
-    public List<Employee> list(){
+    public List<Employee> list() {
         return employeeService.getAllEmployee();
     }
 
     @PostMapping("/add")
-    public String add(@RequestBody Employee employee){
+    public String add(@RequestBody Employee employee) {
         employeeService.saveEmployee(employee);
         // This step below is necessary to update the EmployeeID in Employee Table
         String selectSQL = "update EMPLOYEE set employeeID = KRUSTY_KRAB_PIZZA.PIZZERIA.SEQ_EMPLOYEE_ID.nextval where employeeID =0";
 
-        try{
+        try {
             Connection connection = DatabaseManager.getConnection();
             System.out.println("updated");
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(selectSQL);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return("Saved new employee");
+        return ("Saved new employee");
     }
 }
