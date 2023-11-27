@@ -1,5 +1,6 @@
 package group.KKPizza.controller;
 
+import group.KKPizza.DatabaseManager;
 import group.KKPizza.model.CustomerOrder;
 import group.KKPizza.model.Employee;
 import group.KKPizza.service.CustomerOrderService;
@@ -10,8 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import group.KKPizza.repository.CustomerOrderRepository;
 
-import java.sql.Timestamp;
-import java.sql.Date;
+import java.sql.*;
 import java.text.*;
 import java.util.Calendar;
 import java.util.List;
@@ -67,6 +67,15 @@ public class CustomerOrderController {
     @PostMapping("/add")
     public String add(@RequestBody CustomerOrder customerOrder){
         customerOrderService.saveCustomerOrder(customerOrder);
+        String updateSQL = "update CUSTOMER_ORDER set OrderID = KRUSTY_KRAB_PIZZA.PIZZERIA.SEQ_CUSTOMERORDER_ID.nextval where orderID =0";
+        try {
+            Connection connection = DatabaseManager.getConnection();
+            System.out.println("updated ID");
+            Statement stmt = connection.createStatement();
+            ResultSet us = stmt.executeQuery(updateSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return("Saved new customer order");
     }
     @GetMapping("/getAll")
