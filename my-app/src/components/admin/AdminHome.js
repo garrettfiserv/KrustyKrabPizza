@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function AdminHome() {
   {
-    /* to do for home page
+    /* TODO for home page
 1. call getAllEmployees
 2. call getAllOrders
 3. call getAllMenuItems

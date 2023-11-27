@@ -10,6 +10,7 @@ import AdminHome from "./components/admin/AdminHome";
 import Login from "./components/admin/Login";
 import Navbar from "./components/Navbar";
 import CompleteOrder from "./components/order/CompleteOrder";
+import Sidebar from "./components/admin/Sidebar";
 
 function App() {
   return (
