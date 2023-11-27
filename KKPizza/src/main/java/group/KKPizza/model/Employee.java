@@ -12,7 +12,6 @@ public class Employee {
     private String name;
     private String title;
     private String password;
-
     private boolean isadmin;
 
     public Employee(){}

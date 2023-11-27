@@ -1,9 +1,8 @@
 package group.KKPizza.model;
 import jakarta.persistence.*;
-import net.snowflake.client.jdbc.internal.joda.time.DateTime;
 
-import java.text.DateFormat;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 public class CustomerOrder {
@@ -15,7 +14,8 @@ public class CustomerOrder {
     //@ManyToOne(cascade = CascadeType.ALL, targetEntity = Customer.class)
     //@JoinColumn(name = "phonenumber")
     private String phonenumber;
-    private Timestamp timestamp;
+    private Date orderdate;
+    private Time ordertime;
     private float ordertotal;
     private boolean iscomplete;
 
@@ -48,12 +48,12 @@ public class CustomerOrder {
         this.phonenumber = phonenumber;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Date getDate() {
+        return orderdate;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setDate(Date orderdatedate) {
+        this.orderdate = orderdatedate;
     }
 
     public float getOrdertotal() {
@@ -70,5 +70,13 @@ public class CustomerOrder {
 
     public void setIscomplete(boolean iscomplete) {
         this.iscomplete = iscomplete;
+    }
+
+    public Time getTime() {
+        return ordertime;
+    }
+
+    public void setTime(Time ordertime) {
+        this.ordertime = ordertime;
     }
 }

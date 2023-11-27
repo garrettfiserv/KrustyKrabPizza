@@ -24,4 +24,5 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return ("Saved new customer");
     }
+
 }

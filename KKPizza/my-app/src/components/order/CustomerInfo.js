@@ -25,7 +25,7 @@ export default function CustomerInfo() {
 
     axios
       .post("http://localhost:8080/customer/add", {
-        PHONENUMBER: phone,
+        phoneNumber: phone,
         name: name,
         address: address,
         city: city,
