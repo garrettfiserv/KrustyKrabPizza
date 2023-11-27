@@ -13,6 +13,8 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+    @GetMapping("/getZipByPhonenumber/{phonenumber}")
+    public String getZipByPhonenumber(@PathVariable("phonenumber") String phonenumber){return customerService.getZipByPhonenumber(phonenumber);}
 
     @GetMapping("/getAll")
     public List<Customer> list() {

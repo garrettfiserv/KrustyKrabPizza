@@ -18,10 +18,35 @@ public class CustomerOrder {
     private Time ordertime;
     private float ordertotal;
     private boolean iscomplete;
+    private String zip;
 
 
     public CustomerOrder(){
 
+    }
+
+    public Date getOrderdate() {
+        return orderdate;
+    }
+
+    public void setOrderdate(Date orderdate) {
+        this.orderdate = orderdate;
+    }
+
+    public Time getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(Time ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public int getOrderID() {

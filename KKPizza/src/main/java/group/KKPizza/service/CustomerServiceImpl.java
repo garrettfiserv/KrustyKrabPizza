@@ -22,4 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getAllCustomer() {
         return (List<Customer>) customerRepository.findAll();
     }
+
+    @Override
+    public String getZipByPhonenumber(String phonenumber){return customerRepository.findZipByPhonenumber(phonenumber);}
 }

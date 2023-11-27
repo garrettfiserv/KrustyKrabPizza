@@ -14,4 +14,5 @@ public interface CustomerOrderService {
     public List<CustomerOrder> findByOrderdateBetweenAndEmployeeID(Date orderdate, int employeeID);
 
     public CustomerOrder getCustomerOrderById(int orderID);
+    public List<CustomerOrder> findByOrderdateBetweenAndZip(Date orderdate, String zip);
 }

@@ -8,4 +8,6 @@ public interface CustomerService {
     public Customer saveCustomer(Customer customer);
 
     public List<Customer> getAllCustomer();
+
+    public String getZipByPhonenumber(String customerID);
 }

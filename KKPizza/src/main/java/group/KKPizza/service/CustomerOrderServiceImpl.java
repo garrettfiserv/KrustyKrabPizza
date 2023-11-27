@@ -53,5 +53,14 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
         return customerOrderRepository.findByOrderdateBetweenAndEmployeeID(orderdate, endrange, employeeID);
     }
+    @Override
+    public List<CustomerOrder>findByOrderdateBetweenAndZip(Date orderdate, String zip){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(orderdate);
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date endrange = new Date(calendar.getTimeInMillis());
+        return customerOrderRepository.findByOrderdateBetweenAndZip(orderdate, endrange, zip);
+    }
+
 }
 
