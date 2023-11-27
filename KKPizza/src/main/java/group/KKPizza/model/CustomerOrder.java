@@ -52,8 +52,8 @@ public class CustomerOrder {
         return orderdate;
     }
 
-    public void setDate(Date orderdatedate) {
-        this.orderdate = orderdatedate;
+    public void setDate(Date orderdate) {
+        this.orderdate = orderdate;
     }
 
     public float getOrdertotal() {
