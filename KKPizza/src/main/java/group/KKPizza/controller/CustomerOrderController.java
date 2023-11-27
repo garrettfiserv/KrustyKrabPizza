@@ -79,12 +79,15 @@ public class CustomerOrderController {
     @PostMapping("/add")
     public String add(@RequestBody CustomerOrder customerOrder){
         customerOrderService.saveCustomerOrder(customerOrder);
-        /*
-        UPDATE CUSTOMER_ORDER co
-        SET zip = c.zip
-        FROM CUSTOMER c
-        WHERE co.zip = '0'
-        AND co.phonenumber = c.phonenumber;*/
+        String updateSQL = "update CUSTOMER_ORDER set OrderID = KRUSTY_KRAB_PIZZA.PIZZERIA.SEQ_CUSTOMERORDER_ID.nextval where orderID =0";
+        try {
+            Connection connection = DatabaseManager.getConnection();
+            System.out.println("updated ID");
+            Statement stmt = connection.createStatement();
+            ResultSet us = stmt.executeQuery(updateSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return("Saved new customer order");
     }
     @GetMapping("/getAll")
