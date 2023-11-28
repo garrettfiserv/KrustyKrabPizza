@@ -24,7 +24,5 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public String getZipByPhonenumber(String phonenumber) {
-        return customerRepository.findZipByPhonenumber(phonenumber);
-    }
+    public String getZipByPhonenumber(String phonenumber){return customerRepository.findZipByPhonenumber(phonenumber);}
 }

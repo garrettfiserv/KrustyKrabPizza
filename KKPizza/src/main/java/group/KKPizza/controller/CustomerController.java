@@ -26,11 +26,11 @@ public class CustomerController {
     public List<Customer> list() {
         return customerService.getAllCustomer();
     }
-
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public String add(@RequestBody Customer customer) {
         customerService.saveCustomer(customer);
         return ("Saved new customer");
     }
+
 }

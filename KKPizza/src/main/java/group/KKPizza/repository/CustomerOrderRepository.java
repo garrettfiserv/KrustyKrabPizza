@@ -15,9 +15,7 @@ import java.util.Optional;
 
 @Repository
 public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, Integer> {
-    // List<CustomerOrder> findByOrderdateBetweenAndEmployeeID(Date orderdate, Date
-    // endrange, int employeeID);
+    List<CustomerOrder> findByOrderdateBetweenAndEmployeeID(Date orderdate, Date endrange, int employeeID);
 
-    // List<CustomerOrder> findByOrderdateBetweenAndZip(Date orderdate, Date
-    // endrange, String zip);
+    //List<CustomerOrder> findByOrderdateBetweenAndZip(Date orderdate, Date endrange, String zip );
 }

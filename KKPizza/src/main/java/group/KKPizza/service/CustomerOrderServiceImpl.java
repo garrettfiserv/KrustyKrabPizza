@@ -28,44 +28,35 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    // @Override
-    // public CustomerOrder saveCustomerOrder(CustomerOrder customerOrder) {
-    // return customerOrderRepository.save(customerOrder);
-    // }
+
     public CustomerOrder getCustomerOrderById(int orderID) {
         return customerOrderRepository.findById(orderID).orElse(null);
     }
-
     public CustomerOrder saveCustomerOrder(CustomerOrder customerOrder) {
         return customerOrderRepository.save(customerOrder);
     }
-
     @Override
     public List<CustomerOrder> getAllCustomerOrder() {
         return (List<CustomerOrder>) customerOrderRepository.findAll();
     }
 
-    // @Override
-    // public List<CustomerOrder> findByOrderdateBetweenAndEmployeeID(Date
-    // orderdate, int employeeID) {
-    // Calendar calendar = Calendar.getInstance();
-    // calendar.setTime(orderdate);
-    // calendar.add(Calendar.DAY_OF_YEAR, 7);
-    // Date endrange = new Date(calendar.getTimeInMillis());
+    @Override
+    public List<CustomerOrder> findByOrderdateBetweenAndEmployeeID(Date orderdate, int employeeID){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(orderdate);
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date endrange = new Date(calendar.getTimeInMillis());
 
-    // return customerOrderRepository.findByOrderdateBetweenAndEmployeeID(orderdate,
-    // endrange, employeeID);
-    // }
-
-    // @Override
-    // public List<CustomerOrder> findByOrderdateBetweenAndZip(Date orderdate,
-    // String zip) {
-    // Calendar calendar = Calendar.getInstance();
-    // calendar.setTime(orderdate);
-    // calendar.add(Calendar.DAY_OF_YEAR, 7);
-    // Date endrange = new Date(calendar.getTimeInMillis());
-    // return customerOrderRepository.findByOrderdateBetweenAndZip(orderdate,
-    // endrange, zip);
-    // }
+        return customerOrderRepository.findByOrderdateBetweenAndEmployeeID(orderdate, endrange, employeeID);
+    }
+    /*@Override
+    public List<CustomerOrder>findByOrderdateBetweenAndZip(Date orderdate, String zip){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(orderdate);
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date endrange = new Date(calendar.getTimeInMillis());
+        return customerOrderRepository.findByOrderdateBetweenAndZip(orderdate, endrange, zip);
+    }*/
 
 }
+

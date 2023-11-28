@@ -10,13 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import group.KKPizza.repository.CustomerOrderRepository;
-import static group.KKPizza.DatabaseManager.getConnection;
 
 import java.sql.*;
 import java.text.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -26,54 +26,6 @@ public class CustomerOrderController {
     private CustomerOrderService customerOrderService;
     @Autowired
     private CustomerOrderRepository customerOrderRepository;
-
-    // @CrossOrigin(origins = "http://localhost:3000")
-    // @GetMapping("/getOrderWeekOfByEmployeeID/{date}")
-    // public ResponseEntity getOrderWeekOfByEmployeeID(@PathVariable("date") String
-    // dateStr,
-    // @RequestParam("employeeID") int employeeID) {
-    // try {
-    // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    // java.util.Date parsedDate = dateFormat.parse(dateStr);
-    // Date orderdate = new Date(parsedDate.getTime());
-
-    // List<CustomerOrder> customerOrder =
-    // customerOrderService.findByOrderdateBetweenAndEmployeeID(orderdate,
-    // employeeID);
-
-    // if (!customerOrder.isEmpty()) {
-    // return new ResponseEntity<>(customerOrder, HttpStatus.OK);
-    // } else {
-    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-    // } catch (ParseException e) {
-    // return new ResponseEntity<>("Invalid timestamp format",
-    // HttpStatus.BAD_REQUEST);
-    // }
-    // }
-
-    // @CrossOrigin(origins = "http://localhost:3000")
-    // @GetMapping("/getOrderWeekOfByZip/{date}")
-    // public ResponseEntity getOrderWeekOfByZip(@PathVariable("date") String
-    // dateStr, @RequestParam("zip") String zip) {
-    // try {
-    // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    // java.util.Date parsedDate = dateFormat.parse(dateStr);
-    // Date orderdate = new Date(parsedDate.getTime());
-
-    // List<CustomerOrder> customerOrder =
-    // customerOrderService.findByOrderdateBetweenAndZip(orderdate, zip);
-
-    // if (!customerOrder.isEmpty()) {
-    // return new ResponseEntity<>(customerOrder, HttpStatus.OK);
-    // } else {
-    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-    // } catch (ParseException e) {
-    // return new ResponseEntity<>("Invalid timestamp format",
-    // HttpStatus.BAD_REQUEST);
-    // }
-    // }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{orderID}")
@@ -103,22 +55,47 @@ public class CustomerOrderController {
         return ("Saved new customer order");
     }
 
-    // @CrossOrigin(origins = "http://localhost:3000")
-    // @GetMapping("/getAll")
-    // public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders() {
-    // List<CustomerOrder> customerOrders =
-    // customerOrderService.getAllCustomerOrder();
-
-    // if (!customerOrders.isEmpty()) {
-    // return ResponseEntity.ok(customerOrders);
-    // } else {
-    // return ResponseEntity.notFound().build();
-    // }
-    // }
-
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getAll")
     public List<CustomerOrder> list() {
         return customerOrderService.getAllCustomerOrder();
     }
+    @GetMapping("/getOrderWeekOfByEmployeeID/{date}")
+    public ResponseEntity getOrderWeekOfByEmployeeID(@PathVariable("date") String dateStr, @RequestParam("employeeID") int employeeID) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsedDate = dateFormat.parse(dateStr);
+            Date orderdate = new Date(parsedDate.getTime());
+
+            List<CustomerOrder> customerOrder = customerOrderService.findByOrderdateBetweenAndEmployeeID(orderdate, employeeID);
+
+            if (!customerOrder.isEmpty()) {
+                return new ResponseEntity<>(customerOrder, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (ParseException e) {
+            return new ResponseEntity<>("Invalid timestamp format", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    /*@GetMapping("/getOrderWeekOfByZip/{date}")
+    public ResponseEntity getOrderWeekOfByZip(@PathVariable("date")String dateStr, @RequestParam("zip") String zip){
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsedDate = dateFormat.parse(dateStr);
+            Date orderdate = new Date(parsedDate.getTime());
+
+            List<CustomerOrder> customerOrder = customerOrderService.findByOrderdateBetweenAndZip(orderdate, zip);
+
+            if (!customerOrder.isEmpty()) {
+                return new ResponseEntity<>(customerOrder, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (ParseException e) {
+            return new ResponseEntity<>("Invalid timestamp format", HttpStatus.BAD_REQUEST);
+        }
+    }*/
+
 }
