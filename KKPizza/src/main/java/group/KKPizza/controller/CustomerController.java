@@ -14,6 +14,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @GetMapping("/getZipByPhonenumber/{phonenumber}")
+    // public String getZipByPhonenumber(@PathVariable("phonenumber") String
+    // phonenumber) {
+    // return customerService.getZipByPhonenumber(phonenumber);
+    // }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getAll")
     public List<Customer> list() {
@@ -26,5 +33,4 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return ("Saved new customer");
     }
-
 }

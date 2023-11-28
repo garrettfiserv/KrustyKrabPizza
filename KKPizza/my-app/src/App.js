@@ -15,6 +15,7 @@ import Products from "./components/admin/Products/Products";
 import Employees from "./components/admin/Employees/Employees";
 import Customers from "./components/admin/Customers/Customers";
 import CustomerOrders from "./components/admin/Customers/CustomerOrders";
+import Orders from "./components/admin/Orders/Orders";
 
 function App() {
   const { user, login, isLoggedIn } = useUserContext();
@@ -64,6 +65,7 @@ function App() {
               path="/admin/customer-orders"
               element={<CustomerOrders />}
             ></Route>
+            <Route path="/admin/orders" element={<Orders />}></Route>
           </Routes>
         </div>
       )}

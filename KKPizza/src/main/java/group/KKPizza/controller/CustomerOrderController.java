@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import group.KKPizza.repository.CustomerOrderRepository;
+import static group.KKPizza.DatabaseManager.getConnection;
 
 import java.sql.*;
 import java.text.*;
@@ -26,38 +27,53 @@ public class CustomerOrderController {
     @Autowired
     private CustomerOrderRepository customerOrderRepository;
 
-    @GetMapping("/getOrderWeekOfByEmployeeID/{date}")
-    public ResponseEntity getOrderWeekOfByEmployeeID(@PathVariable("date") String dateStr,
-            @RequestParam("employeeID") int employeeID) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date parsedDate = dateFormat.parse(dateStr);
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @GetMapping("/getOrderWeekOfByEmployeeID/{date}")
+    // public ResponseEntity getOrderWeekOfByEmployeeID(@PathVariable("date") String
+    // dateStr,
+    // @RequestParam("employeeID") int employeeID) {
+    // try {
+    // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // java.util.Date parsedDate = dateFormat.parse(dateStr);
+    // Date orderdate = new Date(parsedDate.getTime());
 
-            // Create a java.sql.Date using the time in milliseconds
-            Date orderdate = new Date(parsedDate.getTime());
+    // List<CustomerOrder> customerOrder =
+    // customerOrderService.findByOrderdateBetweenAndEmployeeID(orderdate,
+    // employeeID);
 
-            System.out.println("Original String: " + dateStr);
-            System.out.println("Converted java.sql.Date: " + orderdate);
+    // if (!customerOrder.isEmpty()) {
+    // return new ResponseEntity<>(customerOrder, HttpStatus.OK);
+    // } else {
+    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // }
+    // } catch (ParseException e) {
+    // return new ResponseEntity<>("Invalid timestamp format",
+    // HttpStatus.BAD_REQUEST);
+    // }
+    // }
 
-            /*
-             * Calendar calendar = Calendar.getInstance();
-             * calendar.setTime(orderdate);
-             * calendar.add(Calendar.DAY_OF_YEAR, 7);
-             * Date endrange = new Date(calendar.getTimeInMillis());
-             */
-            List<CustomerOrder> customerOrder = customerOrderService.findByOrderdateBetweenAndEmployeeID(orderdate,
-                    employeeID);
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @GetMapping("/getOrderWeekOfByZip/{date}")
+    // public ResponseEntity getOrderWeekOfByZip(@PathVariable("date") String
+    // dateStr, @RequestParam("zip") String zip) {
+    // try {
+    // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // java.util.Date parsedDate = dateFormat.parse(dateStr);
+    // Date orderdate = new Date(parsedDate.getTime());
 
-            if (!customerOrder.isEmpty()) {
-                return new ResponseEntity<>(customerOrder, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (ParseException e) {
-            return new ResponseEntity<>("Invalid timestamp format", HttpStatus.BAD_REQUEST);
-        }
+    // List<CustomerOrder> customerOrder =
+    // customerOrderService.findByOrderdateBetweenAndZip(orderdate, zip);
 
-    }
+    // if (!customerOrder.isEmpty()) {
+    // return new ResponseEntity<>(customerOrder, HttpStatus.OK);
+    // } else {
+    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // }
+    // } catch (ParseException e) {
+    // return new ResponseEntity<>("Invalid timestamp format",
+    // HttpStatus.BAD_REQUEST);
+    // }
+    // }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{orderID}")
@@ -87,16 +103,22 @@ public class CustomerOrderController {
         return ("Saved new customer order");
     }
 
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @GetMapping("/getAll")
+    // public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders() {
+    // List<CustomerOrder> customerOrders =
+    // customerOrderService.getAllCustomerOrder();
+
+    // if (!customerOrders.isEmpty()) {
+    // return ResponseEntity.ok(customerOrders);
+    // } else {
+    // return ResponseEntity.notFound().build();
+    // }
+    // }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getAll")
-    public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders() {
-        List<CustomerOrder> customerOrders = customerOrderService.getAllCustomerOrder();
-
-        if (!customerOrders.isEmpty()) {
-            return ResponseEntity.ok(customerOrders);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public List<CustomerOrder> list() {
+        return customerOrderService.getAllCustomerOrder();
     }
-
 }

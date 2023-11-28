@@ -15,14 +15,39 @@ public class CustomerOrder {
     // @ManyToOne(cascade = CascadeType.ALL, targetEntity = Customer.class)
     // @JoinColumn(name = "phonenumber")
     private String phonenumber;
-    private Date orderdate;
-    private Time ordertime;
+    // private Date orderdate;
+    // private Time ordertime;
     private float ordertotal;
     private boolean iscomplete;
+    // private String zip;
 
     public CustomerOrder() {
 
     }
+
+    // public Date getOrderdate() {
+    // return orderdate;
+    // }
+
+    // public void setOrderdate(Date orderdate) {
+    // this.orderdate = orderdate;
+    // }
+
+    // public Time getOrdertime() {
+    // return ordertime;
+    // }
+
+    // public void setOrdertime(Time ordertime) {
+    // this.ordertime = ordertime;
+    // }
+
+    // public String getZip() {
+    // return zip;
+    // }
+
+    // public void setZip(String zip) {
+    // this.zip = zip;
+    // }
 
     public int getOrderID() {
         return orderID;
@@ -48,13 +73,13 @@ public class CustomerOrder {
         this.phonenumber = phonenumber;
     }
 
-    public Date getDate() {
-        return orderdate;
-    }
+    // public Date getDate() {
+    // return orderdate;
+    // }
 
-    public void setDate(Date orderdate) {
-        this.orderdate = orderdate;
-    }
+    // public void setDate(Date orderdate) {
+    // this.orderdate = orderdate;
+    // }
 
     public float getOrdertotal() {
         return ordertotal;
@@ -72,11 +97,11 @@ public class CustomerOrder {
         this.iscomplete = iscomplete;
     }
 
-    public Time getTime() {
-        return ordertime;
-    }
+    // public Time getTime() {
+    // return ordertime;
+    // }
 
-    public void setTime(Time ordertime) {
-        this.ordertime = ordertime;
-    }
+    // public void setTime(Time ordertime) {
+    // this.ordertime = ordertime;
+    // }
 }

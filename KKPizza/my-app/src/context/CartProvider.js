@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     axios.get("http://localhost:8080/product/getAll").then((response) => {
-      setProducts(response.data);
+      setProducts(response?.data);
     });
   }, []);
 

@@ -15,6 +15,9 @@ export default function AdminHome() {
         <Link to="/admin/customers" className="admin-item">
           Customers
         </Link>
+        <Link to="/admin/orders" className="admin-item">
+          Order History
+        </Link>
       </div>
     </section>
   );

@@ -44,15 +44,15 @@ export default function CustomerInfo() {
       // ordertime: new Date().getTime(),
     };
 
-    const customerOrderResponse = await axios.post(
-      "http://localhost:8080/customerOrder/add",
-      customerOrder
-    );
+    // const customerOrderResponse = await axios.post(
+    //   "http://localhost:8080/customerOrder/add",
+    //   customerOrder
+    // );
 
-    const createdOrder = customerOrderResponse?.data;
-    console.log("Customer Order Created:", createdOrder);
-    console.log("Customer Information Successful");
-    localStorage.setItem("customer", JSON.stringify(customer));
+    // const createdOrder = customerOrderResponse?.data;
+    // console.log("Customer Order Created:", createdOrder);
+    // console.log("Customer Information Successful");
+    // localStorage.setItem("customer", JSON.stringify(customer));
     return navigate("/new-order/menu");
   };
 

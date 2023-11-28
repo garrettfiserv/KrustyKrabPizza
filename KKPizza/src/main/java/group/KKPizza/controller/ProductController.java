@@ -1,5 +1,6 @@
 package group.KKPizza.controller;
 
+import group.KKPizza.model.Employee;
 import group.KKPizza.model.Product;
 import group.KKPizza.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
